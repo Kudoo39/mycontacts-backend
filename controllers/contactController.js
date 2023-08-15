@@ -3,7 +3,7 @@ const Contact = require("../models/contactModel");
 
 const getContacts = asyncHandler(async (req, res) => {
   const contacts = await Contact.find();
-  res.status(200).json({ contacts });
+  res.status(200).json(contacts);
 });
 
 const postContact = asyncHandler(async (req, res) => {
@@ -20,11 +20,16 @@ const postContact = asyncHandler(async (req, res) => {
     phone,
   });
 
-  res.status(201).json({ contact });
+  res.status(201).json(contact);
 });
 
 const getContact = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Get contact for " + req.params.id });
+  const contact = await Contact.findById(req.params.id);
+  if (!contact) {
+    res.status(404);
+    throw new Error("Contact not found");
+  }
+  res.status(200).json(contact);
 });
 
 const updateContact = asyncHandler(async (req, res) => {
