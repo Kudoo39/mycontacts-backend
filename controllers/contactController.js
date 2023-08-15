@@ -3,7 +3,8 @@ const getContacts = (req, res) => {
 };
 
 const postContact = (req, res) => {
-  res.status(200).json({ message: "Post all contacts" });
+  console.log(req.body);
+  res.status(201).json({ message: "Create contacts" });
 };
 
 const getContact = (req, res) => {
@@ -11,7 +12,7 @@ const getContact = (req, res) => {
 };
 
 const updateContact = (req, res) => {
-  res.status(200).json({ message: "Update contact for" + req.params.id });
+  res.status(200).json({ message: "Update contact for " + req.params.id });
 };
 
 const deleteContact = (req, res) => {
