@@ -5,6 +5,8 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
+//build-in middleware
+app.use(express.json())
 app.use("/api/contacts", require("./routes/contactRoutes"));
 
 app.listen(port, () => {
